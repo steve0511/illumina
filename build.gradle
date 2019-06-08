@@ -1,0 +1,150 @@
+buildscript {
+    ext {
+        //springBootVersion = "1.5.6.RELEASE"
+        //springBootdependencyVersion = "1.0.3.RELEASE"
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/plugins-release" }
+    }
+    dependencies {
+        classpath "org.junit.platform:junit-platform-gradle-plugin:1.0.0"
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+        classpath "com.netflix.nebula:nebula-publishing-plugin:5.1.4"
+        classpath 'com.netflix.nebula:nebula-release-plugin:6.0.0'
+        classpath "io.spring.gradle:propdeps-plugin:0.0.9.RELEASE"
+        classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.23"
+    }
+}
+
+
+// Creating uber jar
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+apply plugin: 'scala'
+
+apply plugin: 'nebula.maven-publish'
+apply plugin: 'nebula.source-jar'
+//apply plugin: 'nebula.javadoc-jar'
+apply plugin: 'nebula.nebula-release'
+apply plugin: 'maven'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: "com.github.maiflai.scalatest"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven {
+        credentials {
+            username "divedeep"
+            password "apfmzk&^%"
+        }
+        url "http://nexus.coupang.net/content/groups/public"
+    }
+}
+
+dependencies {
+    compile subprojects
+}
+
+shadowJar {
+    zip64 true
+    dependencies {
+        exclude(dependency('org.apache.spark:spark-core_2.11'))
+        exclude(dependency('org.apache.spark:spark-sql_2.11'))
+        exclude(dependency('org.apache.spark:spark-hive_2.11'))
+        exclude(dependency('org.apache.spark:spark-streaming_2.11'))
+        exclude(dependency('org.apache.hadoop:hadoop-core_2.11'))
+        exclude(dependency('org.apache.hadoop:hadoop-client_2.11'))
+    }
+    relocate 'com.google', 'com.google.gridx'
+}
+
+subprojects {
+    //apply from: "http://dev-resource.coupang.net/vitamin-builds/0.10.1.RELEASE/buildscripts.gradle?jn=${java.net.URLEncoder.encode(System.getenv()['JOB_NAME'] ?: 'NOJOB', 'UTF-8')}"
+
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: "java"
+    apply plugin: 'scala'
+    apply plugin: "eclipse-wtp"
+    apply plugin: "jacoco"
+    apply plugin: "groovy"
+    apply plugin: 'com.github.johnrengelman.shadow'
+    // Junit5
+    apply plugin: "org.junit.platform.gradle.plugin"
+
+    apply plugin: 'nebula.maven-publish'
+    apply plugin: 'nebula.source-jar'
+    //apply plugin: 'nebula.javadoc-jar'
+    apply plugin: 'nebula.nebula-release'
+    apply plugin: 'maven'
+    apply plugin: 'propdeps'
+    apply plugin: 'propdeps-maven'
+
+    project.group = "com.coupang.catalog"
+    project.version = "1.0.0-SNAPSHOT"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+
+    //apply from: java8Gradle
+    dependencies {
+        testCompile "org.codehaus.groovy:groovy-all:2.4.11"
+        // for Junit4
+        //testCompile "junit:junit:4.12"
+        //testRuntime "org.junit.vintage:junit-vintage-engine:4.12.1"
+        // for Junit5
+        testCompile "org.junit.jupiter:junit-jupiter-api:5.0.1"
+        testRuntime "org.junit.jupiter:junit-jupiter-engine:5.0.1"
+        testRuntime "org.junit.platform:junit-platform-launcher:1.0.1"
+        testCompile 'org.scalatest:scalatest_2.11:3.0.4'
+
+        testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+        // for spock error java.lang.NoClassDefFoundError: org/objectweb/asm/Type
+        testCompile "asm:asm:3.3.1"
+
+        testCompile "org.codehaus.groovy:groovy-all:2.4.11"
+        testRuntime 'org.pegdown:pegdown:1.4.2'
+    }
+
+    junitPlatform {
+        filters {
+            engines {
+                include "junit-jupiter", "junit-vintage"
+            }
+            tags {
+
+            }
+        }
+        enableStandardTestTask true
+    }
+
+    shadowJar {
+        zip64 true
+        dependencies {
+            exclude(dependency('org.apache.spark:spark-core_2.11'))
+            exclude(dependency('org.apache.spark:spark-sql_2.11'))
+            exclude(dependency('org.apache.spark:spark-hive_2.11'))
+            exclude(dependency('org.apache.spark:spark-streaming_2.11'))
+            exclude(dependency('org.apache.hadoop:hadoop-core_2.11'))
+            exclude(dependency('org.apache.hadoop:hadoop-client_2.11'))
+        }
+        relocate 'com.google', 'com.google.gridx'
+    }
+}
+
+
+ScalaCompileOptions.metaClass.daemonServer = true
+ScalaCompileOptions.metaClass.fork = true
+ScalaCompileOptions.metaClass.useAnt = false
+ScalaCompileOptions.metaClass.useCompileDaemon = false
+
+

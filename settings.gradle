@@ -1,0 +1,3 @@
+rootProject.name = 'vermilion'
+
+include 'vermilion-grpc', 'vermilion-solr'
