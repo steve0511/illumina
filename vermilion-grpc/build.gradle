@@ -1,4 +1,8 @@
-def grpcVersion = '1.15.1'
+ext {
+    grpcVersion= '1.15.1'
+    logbackVersion = '1.2.2'
+    slf4jVersion='1.7.24'
+}
 
 repositories {
     maven {
@@ -11,6 +15,16 @@ repositories {
 
     mavenCentral()
 }
+
+sourceSets {
+    main {
+        java {
+            srcDir 'build/generated/source/proto/main/java'
+            srcDir 'build/generated/source/proto/main/grpc'
+        }
+    }
+}
+
 
 apply plugin: 'com.google.protobuf'
 
@@ -50,4 +64,10 @@ dependencies {
     compile "io.grpc:grpc-netty-shaded:${grpcVersion}"
     compile "io.grpc:grpc-protobuf:${grpcVersion}"
     compile "io.grpc:grpc-stub:${grpcVersion}"
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    runtime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    runtime "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    runtime "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
 }
