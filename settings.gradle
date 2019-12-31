@@ -1,3 +1,3 @@
 rootProject.name = 'vermilion'
 
-include 'vermilion-grpc', 'vermilion-solr'
+include 'vermilion-grpc', 'vermilion-solr', 'vermilion-resilience4j'
