@@ -3,15 +3,7 @@ ext {
 }
 
 repositories {
-    maven {
-        credentials {
-            username "divedeep"
-            password "apfmzk&^%"
-        }
-        url "http://nexus.coupang.net/content/groups/public"
-    }
 
-    mavenCentral()
 }
 
 dependencies {

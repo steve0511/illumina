@@ -38,13 +38,6 @@ repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
-    maven {
-        credentials {
-            username "divedeep"
-            password "apfmzk&^%"
-        }
-        url "http://nexus.coupang.net/content/groups/public"
-    }
 }
 
 dependencies {
@@ -65,7 +58,6 @@ shadowJar {
 }
 
 subprojects {
-    //apply from: "http://dev-resource.coupang.net/vitamin-builds/0.10.1.RELEASE/buildscripts.gradle?jn=${java.net.URLEncoder.encode(System.getenv()['JOB_NAME'] ?: 'NOJOB', 'UTF-8')}"
 
     repositories {
         mavenCentral()
@@ -88,7 +80,6 @@ subprojects {
     apply plugin: 'propdeps'
     apply plugin: 'propdeps-maven'
 
-    project.group = "com.coupang.catalog"
     project.version = "1.0.0-SNAPSHOT"
 
     sourceCompatibility = 1.8

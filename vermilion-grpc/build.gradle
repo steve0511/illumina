@@ -5,14 +5,6 @@ ext {
 }
 
 repositories {
-    maven {
-        credentials {
-            username "divedeep"
-            password "apfmzk&^%"
-        }
-        url "http://nexus.coupang.net/content/groups/public"
-    }
-
     mavenCentral()
 }
 
@@ -59,8 +51,6 @@ protobuf {
 
 dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.2.0'
-    compile group: 'com.coupang.common.protospark', name: 'proto-spark', version: '1.1'
-    compile group: 'com.coupang.search.corpora.product', name: 'product-proto', version: '2.9'
     compile "io.grpc:grpc-netty-shaded:${grpcVersion}"
     compile "io.grpc:grpc-protobuf:${grpcVersion}"
     compile "io.grpc:grpc-stub:${grpcVersion}"
