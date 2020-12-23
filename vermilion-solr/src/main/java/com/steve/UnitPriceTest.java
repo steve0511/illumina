@@ -2,6 +2,8 @@ package com.steve;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author stevexu
@@ -297,12 +299,50 @@ public class UnitPriceTest {
 		products.add(new Product(4523847,12630,"순둥이 프리미엄 엠보싱 유아물티슈 휴대형, 20팩"));
 		products.add(new Product(342469503,1130,"제이웨이브 제이웨이브)베스토 물티슈 캡형(100매)"));
 		products.add(new Product(2183263263L,11080,"탐사 아기물티슈 오리지널 캡형, 100매, 10팩"));
+		String pieceKeyWords = "매";
+		String packKeywords = "팩,개";
 		for (Product product:products) {
-			extractUnitPrice(product);
+			extractUnitPrice(product,pieceKeyWords,packKeywords);
 		}
 	}
 
-	public static Product extractUnitPrice(Product product) {
+	public static Product extractUnitPrice(Product product,
+		String pieceKeyWords,String packKeywords ) {
+ 	    int piece = 0;
+ 	    int pack = 0;
+        for (String pieceKeyWord : pieceKeyWords.split(",")) {
+			Pattern pattern = Pattern.compile("\\d+?" + pieceKeyWord);
+			Matcher matcher = pattern.matcher(product.getTitle());
+			while (matcher.find()) {
+				String res = matcher.group();
+				res = res.substring(0, res.indexOf(pieceKeyWord));
+				piece = Integer.parseInt(res);
+				break;
+			}
+			if (piece > 0) {
+				product.setUnitPiece(piece);
+				break;
+			}
+		}
+		for (String packKeyword : packKeywords.split(",")) {
+			Pattern pattern = Pattern.compile("\\d+?" + packKeyword);
+			Matcher matcher = pattern.matcher(product.getTitle());
+			while (matcher.find()) {
+				String res = matcher.group();
+				res = res.substring(0, res.indexOf(packKeyword));
+				pack = Integer.parseInt(res);
+				break;
+			}
+			if (pack > 0) {
+				product.setUnitPack(pack);
+				break;
+			}
+		}
+		if (piece > 0 && pack > 0) {
+			float unitPrice = ((float)product.getPrice()) / (piece * pack);
+			product.setUnitPrice(unitPrice);
+		}
+		System.out.println(product);
 		return product;
 	}
 
@@ -346,5 +386,41 @@ class Product {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public int getUnitPiece() {
+		return unitPiece;
+	}
+
+	public void setUnitPiece(int unitPiece) {
+		this.unitPiece = unitPiece;
+	}
+
+	public int getUnitPack() {
+		return unitPack;
+	}
+
+	public void setUnitPack(int unitPack) {
+		this.unitPack = unitPack;
+	}
+
+	public float getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(float unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" +
+			"itemId=" + itemId +
+			", price=" + price +
+			", title='" + title + '\'' +
+			", unitPiece=" + unitPiece +
+			", unitPack=" + unitPack +
+			", unitPrice=" + unitPrice +
+			'}';
 	}
 }

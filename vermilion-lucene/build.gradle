@@ -1,0 +1,17 @@
+ext {
+	luceneVersion= '7.4.0'
+	commonCompressVersion = '1.17'
+	commonMath3Version = "3.6.1"
+}
+
+repositories {
+
+}
+
+dependencies {
+	compile "org.apache.lucene:lucene-core:${luceneVersion}"
+	compile "org.apache.lucene:lucene-analyzers-common:${luceneVersion}"
+	compile "org.apache.lucene:lucene-queryparser:${luceneVersion}"
+	compile "org.apache.commons:commons-compress:${commonCompressVersion}"
+	compile "org.apache.commons:commons-math3:${commonMath3Version}"
+}
