@@ -1,4 +1,4 @@
 # illumina Lightbringer
 
 
-for self practicemand grow
+for self practice and grow
