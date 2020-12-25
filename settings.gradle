@@ -1,3 +1,3 @@
-rootProject.name = 'vermilion'
+rootProject.name = 'illumina'
 
-include 'vermilion-grpc', 'vermilion-solr', 'vermilion-resilience4j', 'vermilion-lucene'
+include 'illumina-grpc', 'illumina-solr', 'illumina-resilience4j', 'illumina-lucene'
