@@ -32,8 +32,8 @@ public class LuceneBuildIndex {
         try {
 
             // change the following input and output paths to your local ones
-            String pathCorpus = "/Users/jiepu/Downloads/example_corpus.gz";
-            String pathIndex = "/Users/jiepu/Downloads/example_index_lucene";
+            String pathCorpus = "/Users/sxu/projects/illumina-lucene/example_corpus.gz";
+            String pathIndex = "/Users/sxu/projects/illumina-lucene/example_index_lucene";
 
             Directory dir = FSDirectory.open( new File( pathIndex ).toPath() );
 

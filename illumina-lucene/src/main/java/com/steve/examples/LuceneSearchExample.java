@@ -1,6 +1,6 @@
 package com.steve.examples;
 
-import edu.vt.cs.ir.utils.LuceneUtils;
+import com.steve.utils.LuceneUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.LowerCaseFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;

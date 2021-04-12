@@ -1,6 +1,6 @@
 package com.steve.examples;
 
-import edu.vt.cs.ir.utils.LuceneUtils;
+import com.steve.utils.LuceneUtils;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.MultiFields;
