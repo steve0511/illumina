@@ -19,7 +19,7 @@ public class LuceneReadCorpusStats {
     public static void main(String[] args) {
         try {
 
-            String pathIndex = "/Users/jiepu/Downloads/example_index_lucene";
+            String pathIndex = "/Users/sxu/projects/illumina-lucene/example_index_lucene";
 
             // Let's just count the IDF and P(w|corpus) for the word "reformulation" in the "text" field
             String field = "text";

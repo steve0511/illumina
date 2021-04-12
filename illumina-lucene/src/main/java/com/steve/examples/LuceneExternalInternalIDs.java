@@ -22,7 +22,7 @@ public class LuceneExternalInternalIDs {
         try {
 
             // change to your index path
-            String pathIndex = "/Users/jiepu/Downloads/example_index_lucene";
+            String pathIndex = "/Users/sxu/projects/illumina-lucene/example_index_lucene";
 
             // the name of the external ID (docno) field
             String fieldName = "docno";

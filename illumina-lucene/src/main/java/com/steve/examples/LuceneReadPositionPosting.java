@@ -23,7 +23,7 @@ public class LuceneReadPositionPosting {
     public static void main( String[] args ) {
         try {
 
-            String pathIndex = "/Users/jiepu/Downloads/example_index_lucene";
+            String pathIndex = "/Users/sxu/projects/illumina-lucene/example_index_lucene";
 
             // Let's just retrieve the posting list for the term "reformulation" in the "text" field
             String field = "text";

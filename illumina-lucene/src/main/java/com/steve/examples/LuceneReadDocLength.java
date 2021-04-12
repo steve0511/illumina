@@ -27,7 +27,7 @@ public class LuceneReadDocLength {
     public static void main( String[] args ) {
         try {
 
-            String pathIndex = "/Users/jiepu/Downloads/example_index_lucene";
+            String pathIndex = "/Users/sxu/projects/illumina-lucene/example_index_lucene";
             String field = "text";
 
             Directory dir = FSDirectory.open( new File( pathIndex ).toPath() );

@@ -18,7 +18,7 @@ public class LuceneReadDocVector {
 	public static void main( String[] args ) {
 		try {
 			
-			String pathIndex = "/Users/jiepu/Downloads/example_index_lucene";
+			String pathIndex = "/Users/sxu/projects/illumina-lucene/example_index_lucene";
 			
 			// let's just retrieve the document vector (only the "text" field) for the Document with internal ID=21
 			String field = "text";
