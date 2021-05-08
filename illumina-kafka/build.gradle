@@ -1,0 +1,25 @@
+ext {
+    kafkaclientversion = '1.1.0'
+    jacksonversion = '2.6.7'
+	logbackversion = '1.0.11'
+    commonslangversion = '2.6'
+    commonsloggingversion = '1.1.1'
+	commonsmathversion = '3.2'
+    sl4jversion = '1.7.2'
+    slf4jsimpleversion = '1.6.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile "org.apache.kafka:kafka-clients:${kafkaclientversion}"
+	compile "com.fasterxml.jackson.core:jackson-core:${jacksonversion}"
+	compile "com.fasterxml.jackson.core:jackson-databind:${jacksonversion}"
+	compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonversion}"
+	compile "commons-lang:commons-lang:${commonslangversion}"
+	compile "commons-logging:commons-logging:${commonsloggingversion}"
+	compile "org.slf4j:slf4j-simple:${slf4jsimpleversion}"
+	compile "ch.qos.logback:logback-classic:${logbackversion}"
+}

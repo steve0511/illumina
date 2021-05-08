@@ -1,3 +1,3 @@
 rootProject.name = 'illumina'
 
-include 'illumina-grpc', 'illumina-solr', 'illumina-resilience4j', 'illumina-lucene'
+include 'illumina-grpc', 'illumina-solr', 'illumina-resilience4j', 'illumina-lucene', 'illumina-kafka'
