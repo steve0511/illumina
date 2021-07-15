@@ -37,8 +37,8 @@ public class ReconciledMessageFakeProducer {
     }
 
     public static void sendBatch(Producer<String, ReconciledMessage> producer, String topic) throws InterruptedException {
-        for (int round = 1; round <= 10; round++) {
-            for (int i = 1; i <= 100; i++) {
+        for (int round = 1; round <= 5; round++) {
+            for (int i = 1; i <= 10; i++) {
                 ProducerRecord<String, ReconciledMessage> message = new ProducerRecord<>(topic, String.valueOf(i),
                           new ReconciledMessage(i, "SK-II sk ii 중반 기적의 본질, 1.7 온스, 단일상품", "sk2", "56112", "other manufacturer"));
                 producer.send(message, (RecordMetadata recordMetadata, Exception e) -> {
